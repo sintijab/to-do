@@ -2,7 +2,7 @@
 
  Single page app built with ReactJS and Redux state management
  configured Webpack with Babel, PostCSS, SASS loaders
- css modules has been used for local class names, mixins are used for using breakpoints for mobile-first development.
+ css modules has been used for local class names, mixins are used for breakpoints useful for mobile-first development.
  For managing state across all application I prefer using Redux. Container folder has been excluded but for apps with higher complexity and larger structure could be placed in different folder separately. For API calls I prefer using XHR because of flexibility and more clear status of calls. I have tried to limit the number of api calls and using store sharing by props and managing component state for better performance. For JWT authentication I have used cookies to store the key.
 
  to-do list simple task management system meets requirements:
@@ -24,7 +24,7 @@ $ npm install
 ## Deployment
 
 ```bash
-$ $ npm run build
+$ npm run build
 ```
 
 ## Development
