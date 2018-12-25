@@ -1,0 +1,86 @@
+@import 'mixins', 'variables';
+
+:local {
+	.form {
+		height: 50%;
+		width: 90%;
+		border-radius: 40px;
+		background: $white-transparent-bold;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		@include desktop {
+        width: 450px;
+				height: 300px;
+    }
+	}
+
+  .form_row {
+    width: 710px;
+		display: block;
+		margin: auto;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+
+		@include desktop {
+			width: 250px;
+		}
+  }
+
+  .label {
+		display: block;
+		height: inherit;
+    width: 680px;
+		bottom: 0;
+		padding: 12px 0;
+		text-align: center;
+
+		@include desktop {
+			width: 240px;
+			padding: 2px 0;
+		}
+  }
+
+  .info_label {
+    margin: 8px 10px;
+    display: inline-block;
+  }
+
+  .submit_btn {
+		display: inline-block;
+    cursor: pointer;
+    padding: 25px 15px;
+    margin: 5px 0;
+    border-radius: 40px;
+    width: inherit;
+
+		@include desktop {
+			padding: 10px 15px;
+		}
+  }
+
+  .input {
+    height: 30px;
+    width: inherit;
+		padding: 25px 15px;
+    border: .5px solid $semi-dark-gray;
+		border-radius: 40px;
+    font-weight: 100;
+
+		::placeholder {
+			color: $light-gray;
+			opacity: .5;
+		}
+
+		@include desktop {
+			padding: 5px;
+		}
+  }
+
+	.label_row {
+		color: $color_text-warning;
+	}
+}
