@@ -52,7 +52,7 @@ class Modal extends Component {
 				newComment: null,
 			})
 		} else if (hasError && !inputChange && !inputFailed) {
-			const errorMsg = error.payload.message || ''
+			const errorMsg = error.payload.message || ""
 			const commentsValid = virtualComments.slice(0, -1)
 
 			this.setState({
@@ -99,10 +99,9 @@ class Modal extends Component {
 	}
 
 	render() {
-		const { data, labels } = this.props
+		const { title, text, labels } = this.props
 		const { virtualComments, inputFailed, errorMessage } = this.state
 		const hasComments = virtualComments.length > 0
-		const { text, title } = data.payload
 		const { comment, commentTitle } = labels.modal
 		const getComments =
 			hasComments &&
@@ -142,7 +141,9 @@ class Modal extends Component {
 					<div className={styles.content}>
 						<p>{text}</p>
 						{commentField}
-						{inputFailed && <span className={styles.label_row}>{errorMessage}</span>}
+						{inputFailed && (
+							<span className={styles.label_row}>{errorMessage}</span>
+						)}
 						{getComments}
 					</div>
 				</div>

@@ -49,7 +49,7 @@ class TodoList extends Component {
 				newTask: null,
 			})
 		} else if (hasError && !inputChange && inputValid) {
-			const errorMsg = error.payload.message || ''
+			const errorMsg = error.payload.message || ""
 			const tasksValid = virtualTasks.slice(0, -1)
 
 			this.setState({
@@ -126,7 +126,7 @@ class TodoList extends Component {
 
 		const { todoList } = labels
 		const { title, newTaskTitle, submit, openTask } = todoList
-		const inputErrorMsg = !isEmpty(error) && (error.payload.message || '')
+		const inputErrorMsg = !isEmpty(error) && (error.payload.message || "")
 		return (
 			<div className={styles.board}>
 				<form onSubmit={this.handleSubmit} className={styles.form_row}>

@@ -21,4 +21,9 @@ const store = createStore(
 	),
 )
 
-render(<Provider store={store}><App /></Provider>, document.getElementById("app"))
+render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById("app"),
+)

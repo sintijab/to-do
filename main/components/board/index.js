@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import { closeOverlay, getComments } from "../../actions/modalActions"
 import { SHOW_OVERLAY, CLOSE_OVERLAY } from "../../actions/types"
+import { isEmpty } from "../../common/utils"
 import Modal from "../modal"
 import styles from "./board.scss"
 
@@ -12,13 +13,16 @@ class Board extends Component {
 
 		this.state = {
 			showOverlay: false,
+			passData: false,
+			title: "",
+			text: "",
 		}
 	}
 
 	componentDidUpdate() {
 		const { modal } = this.props
-		const { showOverlay } = this.state
-		const { id } = modal.payload
+		const { showOverlay, passData } = this.state
+		const { id, title, text } = modal.payload
 
 		if (modal.type === SHOW_OVERLAY && !showOverlay) {
 			this.props.getComments(id)
@@ -31,16 +35,28 @@ class Board extends Component {
 				showOverlay: false,
 			})
 		}
+		if (!isEmpty(modal.payload) && modal.type === SHOW_OVERLAY && !passData) {
+			this.setState({
+				passData: true,
+				title: title,
+				text: text,
+			})
+		}
 	}
 
 	render() {
-		const { modal, labels, comments } = this.props
-		const { showOverlay } = this.state
+		const { labels, comments } = this.props
+		const { showOverlay, title, text } = this.state
 
 		return (
 			<div className={styles.board}>
 				{showOverlay && (
-					<Modal data={modal} labels={labels} comments={comments} />
+					<Modal
+						title={title}
+						text={text}
+						labels={labels}
+						comments={comments}
+					/>
 				)}
 				{this.props.children}
 			</div>

@@ -1,7 +1,4 @@
-import {
-	LOGGED_IN,
-	LOGGED_OUT,
-} from "../actions/types"
+import { LOGGED_IN, LOGGED_OUT } from "../actions/types"
 
 const initialState = {
 	payload: {},

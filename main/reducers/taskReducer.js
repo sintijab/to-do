@@ -1,8 +1,4 @@
-import {
-	FETCH_TASKS,
-	NEW_TASK,
-	DELETE_TASK,
-} from "../actions/types"
+import { FETCH_TASKS, NEW_TASK, DELETE_TASK } from "../actions/types"
 
 const initialState = {
 	tasks: [],
