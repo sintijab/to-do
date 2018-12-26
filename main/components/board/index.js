@@ -33,6 +33,7 @@ class Board extends Component {
 		if (modal.type === CLOSE_OVERLAY && showOverlay) {
 			this.setState({
 				showOverlay: false,
+				passData: false,
 			})
 		}
 		if (!isEmpty(modal.payload) && modal.type === SHOW_OVERLAY && !passData) {
