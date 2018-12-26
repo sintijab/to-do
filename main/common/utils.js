@@ -12,31 +12,31 @@ export const isEmpty = key => {
 }
 
 export const setCookie = (name, value, days) => {
-	var expires = days ? days * 86400 : 86400
+	let expires = days ? days * 86400 : 86400
 	document.cookie =
 		name + "=" + (value || "") + "; max-age=" + expires + "; path=/"
 }
 
 export const getCookie = name => {
-	var nameEQ = name + "="
-	var ca = document.cookie.split(";")
-	for (var i = 0; i < ca.length; i++) {
-		var c = ca[i]
-		while (c.charAt(0) == " ") c = c.substring(1, c.length)
-		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length)
+	let nameEQ = name + "="
+	let ca = document.cookie.split(";")
+	for (let i = 0; i < ca.length; i+1) {
+		let c = ca[i]
+		while (c.charAt(0) === " ") {c = c.substring(1, c.length)}
+		if (c.indexOf(nameEQ) === 0) {return c.substring(nameEQ.length, c.length)}
 	}
 	return null
 }
 
 const extractTasks = jsonResponse => {
-	var tasks = jsonResponse.data
+	let tasks = jsonResponse.data
 		.map(items => items.data)
 		.filter(data => data.type === "tasks")
 	return tasks
 }
 
 const extractComments = jsonResponse => {
-	var tasks = jsonResponse.data
+	let tasks = jsonResponse.data
 		.map(items => items.data)
 		.filter(data => data.type === "comments")
 	return tasks
@@ -51,14 +51,14 @@ export const xmlHttpRequest = (
 	sendData,
 	resolved,
 ) => {
-	var xmlhttp = new XMLHttpRequest()
-	var requestUrl = requestParam.requestUrl + param
+	let xmlhttp = new XMLHttpRequest()
+	let requestUrl = requestParam.requestUrl + param
 	xmlhttp.onreadystatechange = function() {
-		var data = this.responseText
-		var jsonResponse = data && data.length > 0 ? JSON.parse(data) : null
-		if (this.readyState == 4) {
-			if (this.status == 200 || this.status == 201) {
-				resolved === LOGGED_IN ? (data = jsonResponse["token"]) : jsonResponse
+		let data = this.responseText
+		let jsonResponse = data && data.length > 0 ? JSON.parse(data) : null
+		if (this.readyState === 4) {
+			if (this.status === 200 || this.status === 201) {
+				resolved === LOGGED_IN ? (data = jsonResponse.token) : jsonResponse
 				resolved === FETCH_TASKS
 					? (data = extractTasks(jsonResponse))
 					: jsonResponse

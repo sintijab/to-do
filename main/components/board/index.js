@@ -55,7 +55,6 @@ Board.propTypes = {
 
 const mapStateToProps = state => ({
 	modal: state.modal,
-	error: state.error,
 	comments: state.comments,
 })
 

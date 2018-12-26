@@ -1,8 +1,6 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
-import { getLoginStatus } from "../../actions/loginActions"
 import { getTasks } from "../../actions/taskActions"
 import { setCookie, getCookie } from "../../common/utils"
 import styles from "./view.scss"

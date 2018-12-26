@@ -23,7 +23,7 @@ export const getComments = id => dispatch => {
 }
 
 export const showOverlay = (title, description, id) => dispatch => {
-	var data = {
+	let data = {
 		title: title,
 		text: description,
 		id: id,

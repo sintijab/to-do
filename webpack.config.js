@@ -11,11 +11,18 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js|jsx$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      },
+      {
+        enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        }
+        use: [
+          'babel-loader',
+          'eslint-loader'
+        ],
       },
       {
         test: /\.scss$/,
@@ -52,10 +59,12 @@ module.exports = {
       }
     ],
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: './main/index.html',
-    filename: 'index.html'
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './main/index.html',
+      filename: 'index.html'
+    }),
+],
   resolve: {
     extensions: ['.js', '.jsx']
   },

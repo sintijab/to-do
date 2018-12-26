@@ -22,7 +22,6 @@ export const createTask = (title, description) => dispatch => {
 		encodeURIComponent(title) +
 		"&description=" +
 		encodeURIComponent(description)
-	const resolved = NEW_TASK
 
 	xmlHttpRequest(dispatch, param, method, auth, type, send, NEW_TASK)
 }

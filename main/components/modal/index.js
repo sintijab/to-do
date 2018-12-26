@@ -14,10 +14,13 @@ class Modal extends Component {
 			commentsStored: false,
 			virtualComments: [],
 			newComment: null,
+			inputFailed: false,
+			inputChange: false,
 		}
 
 		this.closeOverlay = this.closeOverlay.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
+		this.onChange = this.onChange.bind(this)
 	}
 
 	closeOverlay() {
@@ -30,8 +33,11 @@ class Modal extends Component {
 			commentsStored,
 			virtualComments,
 			newComment,
+			inputFailed,
+			inputChange,
 		} = this.state
-		const { comments } = this.props
+		const { comments, error } = this.props
+		const hasError = !isEmpty(error.payload)
 
 		if (!isEmpty(comments) && !commentsStored && !createdComment) {
 			this.setState({
@@ -40,10 +46,29 @@ class Modal extends Component {
 			})
 		}
 
-		if (!!newComment) {
+		if (!!newComment && !hasError) {
 			this.setState({
 				virtualComments: virtualComments.concat(newComment),
 				newComment: null,
+			})
+		} else if (hasError && !inputChange && !inputFailed) {
+			const errorMsg = error.payload.message || ''
+			const commentsValid = virtualComments.slice(0, -1)
+
+			this.setState({
+				virtualComments: commentsValid,
+				errorMessage: errorMsg,
+				inputFailed: true,
+			})
+		}
+	}
+
+	onChange() {
+		const { inputFailed } = this.state
+		if (inputFailed) {
+			this.setState({
+				inputChange: true,
+				inputFailed: false,
 			})
 		}
 	}
@@ -60,6 +85,7 @@ class Modal extends Component {
 		const newCommentId = lastCommentID + 1
 		this.setState({
 			createdComment: true,
+			inputChange: false,
 			newComment: {
 				type: "comments",
 				id: newCommentId,
@@ -73,8 +99,8 @@ class Modal extends Component {
 	}
 
 	render() {
-		const { data, labels, modal, comments } = this.props
-		const { virtualComments } = this.state
+		const { data, labels } = this.props
+		const { virtualComments, inputFailed, errorMessage } = this.state
 		const hasComments = virtualComments.length > 0
 		const { text, title } = data.payload
 		const { comment, commentTitle } = labels.modal
@@ -98,6 +124,7 @@ class Modal extends Component {
 						ref={input => {
 							this.comment = input
 						}}
+						onChange={this.onChange}
 						placeholder={comment}
 						required
 					/>
@@ -115,6 +142,7 @@ class Modal extends Component {
 					<div className={styles.content}>
 						<p>{text}</p>
 						{commentField}
+						{inputFailed && <span className={styles.label_row}>{errorMessage}</span>}
 						{getComments}
 					</div>
 				</div>

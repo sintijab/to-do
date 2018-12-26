@@ -1,5 +1,4 @@
 import { LOGGED_IN, LOGGED_OUT } from "./types"
-import { setCookie } from "../common/utils"
 import { requestParam } from "../common/variables"
 import { xmlHttpRequest } from "../common/utils"
 

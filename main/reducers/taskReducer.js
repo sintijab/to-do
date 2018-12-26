@@ -1,7 +1,5 @@
 import {
 	FETCH_TASKS,
-	CLIENT_FAILED,
-	REQUEST_FAILED,
 	NEW_TASK,
 	DELETE_TASK,
 } from "../actions/types"

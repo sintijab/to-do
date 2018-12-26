@@ -1,8 +1,6 @@
 import {
 	LOGGED_IN,
 	LOGGED_OUT,
-	CLIENT_FAILED,
-	REQUEST_FAILED,
 } from "../actions/types"
 
 const initialState = {

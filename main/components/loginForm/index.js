@@ -2,8 +2,7 @@ import React, { Component } from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { getLoginStatus } from "../../actions/loginActions"
-import { requestTasks } from "../../actions/taskActions"
-import { CLIENT_FAILED, LOGGED_IN, LOGGED_OUT } from "../../actions/types"
+import { CLIENT_FAILED, LOGGED_IN } from "../../actions/types"
 import { isEmpty } from "../../common/utils"
 import styles from "./loginForm.scss"
 
@@ -26,7 +25,6 @@ class LoginForm extends Component {
 		const { loginFailed, inputChange } = this.state
 
 		const hasLoggedIn = userState.type === LOGGED_IN && !!userState.payload
-		const hasLoggedOut = userState.type === LOGGED_OUT
 		const hasInputError =
 			!isEmpty(error.payload) && error.type === CLIENT_FAILED
 		const loggedInFailed = hasInputError && !inputChange && !hasLoggedIn
