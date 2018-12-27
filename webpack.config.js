@@ -1,19 +1,18 @@
-const path = require('path');
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './main/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.js|jsx$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader'],
       },
       {
         enforce: 'pre',
@@ -39,30 +38,30 @@ module.exports = {
               importLoaders: 1,
               import: true,
               sourceMap: true,
-            }
+            },
           },
           {
             loader: 'sass-loader',
             options: {
               includePaths: ['main/common/styles', 'main/components'],
               sourceMap: true,
-            }
+            },
           },
           {
           loader: "postcss-loader",
           options: {
             ident: 'postcss',
-            plugins: [require('autoprefixer')]
+            plugins: [require('autoprefixer')],
             }
           },
-        ]
-      }
+        ],
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './main/index.html',
-      filename: 'index.html'
+      filename: 'index.html',
     }),
 ],
   resolve: {
@@ -70,5 +69,5 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist'
-  }
+  },
 };
