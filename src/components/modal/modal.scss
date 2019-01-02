@@ -1,0 +1,110 @@
+@import '_mixins', '_variables';
+
+:local {
+  .wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $gray-transparent-light;
+    overflow: hidden;
+  }
+
+	.wrapper_msg {
+    height: 80%;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    background: $white;
+    border-radius: 40px;
+    overflow: auto;
+
+		@include desktop {
+      height: 600px;
+      width: 800px;
+		}
+  }
+
+  .close {
+    float: right;
+    padding: 5px;
+    cursor: pointer;
+
+    &::before {
+      content: '\002573';
+      font-size: 1.8em;
+      font-weight: bold;
+      color: $dark-gray;
+      margin: 23px;
+      display: block;
+      height: 80px;
+      width: 80px;
+
+      @include desktop {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+
+  .content {
+    margin: 80px 60px 60px;
+    text-align: justify;
+    line-height: 1.5;
+    display: table;
+  }
+
+  .header {
+    display: block;
+    position: fixed;
+    width: inherit;
+  }
+
+  .title {
+    padding: 30px 60px;
+  }
+
+  .comments {
+    display: block;
+  }
+
+  .textarea {
+    display: block;
+    width: 500px;
+    height: 50px;
+    margin: 40px 0;
+    border: 0;
+    border-bottom: 1px solid $dark-gray;
+
+    @include desktop {
+      margin: 0;
+    }
+  }
+
+  .submit_btn {
+    display: inline-block;
+    cursor: pointer;
+    padding: 30px 40px;
+    margin: 10px 0;
+    border-radius: 80px;
+    width: inherit;
+
+    @include desktop {
+      padding: 10px 15px;
+    }
+  }
+
+  .sub_title {
+    font-weight: 600;
+  }
+
+  .label_row {
+    display: block;
+    color: $color_text-warning;
+  }
+}

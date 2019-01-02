@@ -1,73 +1,68 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-  entry: './main/index.js',
+  entry: ['./src/index.js', './src/app.scss'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Title',
+      template: path.resolve(__dirname, './src/index.html'),
+      filename: 'index.html',
+      inject: 'body',
+    }),
+    new ExtractTextPlugin({
+        filename: 'bundle.css', allChunks: true, disable: false
+    }),
+],
   module: {
     rules: [
       {
-        test: /\.js|jsx$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
       {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          'babel-loader',
-          'eslint-loader'
-        ],
-      },
-      {
         test: /\.scss$/,
-        use: [
-          {
-            loader: 'style-loader',
-            options: { sourceMap: true }
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
-              importLoaders: 1,
-              import: true,
-              sourceMap: true,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                import: true,
+                modules: true,
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+                importLoaders: 2,
+              },
             },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              includePaths: ['main/common/styles', 'main/components'],
-              sourceMap: true,
+            {
+              loader: "postcss-loader",
+              options: {
+                ident: 'postcss',
+                plugins: [require('autoprefixer')],
             },
-          },
-          {
-          loader: "postcss-loader",
-          options: {
-            ident: 'postcss',
-            plugins: [require('autoprefixer')],
-            }
-          },
-        ],
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: [
+                  path.resolve(__dirname, 'src/styles'),
+                  path.resolve(__dirname, 'src/components'),
+                  path.resolve(__dirname, "node_modules"),
+              ]},
+            },
+          ],
+        }),
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './main/index.html',
-      filename: 'index.html',
-    }),
-],
   resolve: {
-    extensions: ['.js', '.jsx']
-  },
-  devServer: {
-    contentBase: './dist'
+    extensions: ['.js', '.jsx'],
+    modules: ['node_modules'],
   },
 };

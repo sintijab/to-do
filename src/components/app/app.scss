@@ -1,0 +1,9 @@
+@import '_variables', '_mixins';
+
+:local {
+	.main {
+		display: block;
+		background-size: 100%;
+		height: 100vH;
+	}
+}
