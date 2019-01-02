@@ -37,7 +37,9 @@ class Modal extends Component {
 			inputChange,
 		} = this.state
 		const { comments, error } = this.props
-		const hasError = !isEmpty(error.payload)
+		//eslint-disable-next-line
+		debugger
+		const hasError = !!error.payload && !isEmpty(error.payload)
 
 		if (!isEmpty(comments) && !commentsStored && !createdComment) {
 			this.setState({
@@ -50,7 +52,9 @@ class Modal extends Component {
 			this.setState({
 				virtualComments: virtualComments.concat(newComment),
 				newComment: null,
+				errorMessage: '',
 			})
+			this.comment.value = ''
 		} else if (hasError && !inputChange && !inputFailed) {
 			const errorMsg = error.payload.message || ""
 			const commentsValid = virtualComments.slice(0, -1)
