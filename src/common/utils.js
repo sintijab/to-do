@@ -19,15 +19,15 @@ export const setCookie = (name, value, days) => {
 
 export const getCookie = name => {
 	if (document.cookie.length > 0) {
-			let valueStarts = document.cookie.indexOf(name + "=")
-			if (valueStarts !== -1) {
-					valueStarts = valueStarts + name.length + 1
-					let valueEnds = document.cookie.indexOf(";", valueStarts)
-					if (valueEnds === -1) {
-							valueEnds = document.cookie.length
-					}
-					return unescape(document.cookie.substring(valueStarts, valueEnds))
+		let valueStarts = document.cookie.indexOf(name + "=")
+		if (valueStarts !== -1) {
+			valueStarts = valueStarts + name.length + 1
+			let valueEnds = document.cookie.indexOf(";", valueStarts)
+			if (valueEnds === -1) {
+				valueEnds = document.cookie.length
 			}
+			return unescape(document.cookie.substring(valueStarts, valueEnds))
+		}
 	}
 	return null
 }

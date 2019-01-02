@@ -14,7 +14,7 @@ const middleware = [thunk]
 const store = createStore(
 	rootReducer,
 	initialState,
-		applyMiddleware(...middleware)
+	applyMiddleware(...middleware),
 )
 export const TodoApp = () => <App />
 render(

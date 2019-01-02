@@ -1,68 +1,64 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const autoprefixer = require("autoprefixer")
 
 module.exports = {
-  entry: ['./src/index.js', './src/app.scss'],
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve('dist'),
     filename: 'bundle.js',
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Title',
-      template: path.resolve(__dirname, './src/index.html'),
-      filename: 'index.html',
-      inject: 'body',
-    }),
-    new ExtractTextPlugin({
-        filename: 'bundle.css', allChunks: true, disable: false
-    }),
-],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
-    rules: [
+    loaders: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
+        test: /\.js?$/,
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015', 'stage-3'],
+        },
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
           use: [
+            'style-loader',
             {
               loader: 'css-loader',
               options: {
-                import: true,
-                modules: true,
-                localIdentName: '[name]__[local]--[hash:base64:5]',
                 importLoaders: 2,
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+                sourceMap: true,
               },
             },
             {
-              loader: "postcss-loader",
+              loader: 'postcss-loader',
               options: {
-                ident: 'postcss',
-                plugins: [require('autoprefixer')],
+                sourceMap: true,
+                plugins: [autoprefixer()],
             },
             },
             {
               loader: 'sass-loader',
               options: {
+                sourceMap: true,
                 includePaths: [
                   path.resolve(__dirname, 'src/styles'),
                   path.resolve(__dirname, 'src/components'),
-                  path.resolve(__dirname, "node_modules"),
+                  path.resolve(__dirname, 'node_modules'),
               ]},
             },
           ],
-        }),
       },
     ],
   },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-    modules: ['node_modules'],
-  },
-};
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+      inject: 'body',
+    }),
+],
+}

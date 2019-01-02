@@ -5,7 +5,7 @@ import { createTask, removeTask } from "../../actions/taskActions"
 import { showOverlay } from "../../actions/modalActions"
 import { isEmpty } from "../../common/utils"
 import styles from "./todoList.scss"
-import * as classNames from "classnames"
+import classNames from "classnames"
 
 class TodoList extends Component {
 	constructor(props) {

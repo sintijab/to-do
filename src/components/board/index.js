@@ -29,14 +29,14 @@ class Board extends Component {
 			this.setState({
 				showOverlay: true,
 			})
-			document.body.style.overflow = 'hidden'
+			document.body.style.overflow = "hidden"
 		}
 		if (modal.type === CLOSE_OVERLAY && showOverlay) {
 			this.setState({
 				showOverlay: false,
 				passData: false,
 			})
-			document.body.style.overflow = 'auto'
+			document.body.style.overflow = "auto"
 		}
 		if (!isEmpty(modal.payload) && modal.type === SHOW_OVERLAY && !passData) {
 			this.setState({
