@@ -94,8 +94,8 @@ class Modal extends Component {
 				},
 			},
 		})
-		const id = this.props.data.payload.id
-		this.props.addComment(id, newInputValue)
+		const id = this.props.id
+		!!this.props.id && this.props.addComment(id, newInputValue)
 	}
 
 	render() {

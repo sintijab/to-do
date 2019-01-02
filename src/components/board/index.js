@@ -16,6 +16,7 @@ class Board extends Component {
 			passData: false,
 			title: "",
 			text: "",
+			id: null,
 		}
 	}
 
@@ -43,13 +44,14 @@ class Board extends Component {
 				passData: true,
 				title: title,
 				text: text,
+				id: id,
 			})
 		}
 	}
 
 	render() {
 		const { labels, comments } = this.props
-		const { showOverlay, title, text } = this.state
+		const { showOverlay, title, text, id } = this.state
 
 		return (
 			<div className={styles.board}>
@@ -59,6 +61,7 @@ class Board extends Component {
 						text={text}
 						labels={labels}
 						comments={comments}
+						id={id}
 					/>
 				)}
 				{this.props.children}
