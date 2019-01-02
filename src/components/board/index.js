@@ -40,7 +40,7 @@ class Board extends Component {
 			document.body.style.overflow = "auto"
 		}
 		if (!isEmpty(modal.payload) && modal.type === SHOW_OVERLAY && !passData) {
-			this.setState({
+		this.setState({
 				passData: true,
 				title: title,
 				text: text,

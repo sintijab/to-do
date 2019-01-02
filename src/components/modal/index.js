@@ -15,12 +15,10 @@ class Modal extends Component {
 			virtualComments: [],
 			newComment: null,
 			inputFailed: false,
-			inputChange: false,
 		}
 
 		this.closeOverlay = this.closeOverlay.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
-		this.onChange = this.onChange.bind(this)
 	}
 
 	closeOverlay() {
@@ -34,11 +32,8 @@ class Modal extends Component {
 			virtualComments,
 			newComment,
 			inputFailed,
-			inputChange,
 		} = this.state
 		const { comments, error } = this.props
-		//eslint-disable-next-line
-		debugger
 		const hasError = !!error.payload && !isEmpty(error.payload)
 
 		if (!isEmpty(comments) && !commentsStored && !createdComment) {
@@ -47,15 +42,14 @@ class Modal extends Component {
 				commentsStored: true,
 			})
 		}
-
-		if (!!newComment && !hasError) {
+		if (newComment) {
 			this.setState({
 				virtualComments: virtualComments.concat(newComment),
 				newComment: null,
 				errorMessage: '',
 			})
 			this.comment.value = ''
-		} else if (hasError && !inputChange && !inputFailed) {
+		} else if (hasError && !inputFailed) {
 			const errorMsg = error.payload.message || ""
 			const commentsValid = virtualComments.slice(0, -1)
 
@@ -63,16 +57,6 @@ class Modal extends Component {
 				virtualComments: commentsValid,
 				errorMessage: errorMsg,
 				inputFailed: true,
-			})
-		}
-	}
-
-	onChange() {
-		const { inputFailed } = this.state
-		if (inputFailed) {
-			this.setState({
-				inputChange: true,
-				inputFailed: false,
 			})
 		}
 	}
@@ -89,7 +73,6 @@ class Modal extends Component {
 		let newCommentId = lastCommentID + 1
 		this.setState({
 			createdComment: true,
-			inputChange: false,
 			newComment: {
 				type: "comments",
 				id: newCommentId,
@@ -127,7 +110,6 @@ class Modal extends Component {
 						ref={input => {
 							this.comment = input
 						}}
-						onChange={this.onChange}
 						placeholder={comment}
 						required
 					/>
