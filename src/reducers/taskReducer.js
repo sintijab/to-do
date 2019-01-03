@@ -15,6 +15,7 @@ export default function(state = initialState, action) {
 		case NEW_TASK:
 			return {
 				...state,
+				type: action.type,
 				task: action.payload,
 			}
 		case DELETE_TASK:

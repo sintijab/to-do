@@ -33,7 +33,7 @@ class TodoList extends Component {
 			newTask,
 			storedTask,
 		} = this.state
-		const { error, tasks } = this.props
+		const { error, tasks, type } = this.props
 		const hasError = !isEmpty(error.payload)
 
 		if (!isEmpty(tasks) && !tasksStored && !createdTask) {
@@ -42,7 +42,7 @@ class TodoList extends Component {
 				tasksStored: true,
 			})
 		}
-		if(tasks && tasks.type === NEW_TASK && !inputValid) {
+		if(type === NEW_TASK && !inputValid) {
 			this.setState({
 				inputValid: true,
 				virtualTasks: virtualTasks.concat(storedTask),
@@ -192,6 +192,7 @@ TodoList.propTypes = {
 const mapStateToProps = state => ({
 	error: state.error,
 	task: state.tasks.task,
+	type: state.tasks.type,
 })
 
 export default connect(
