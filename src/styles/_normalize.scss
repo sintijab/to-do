@@ -4,19 +4,19 @@
  */
 
 html {
-  line-height: 1.15; /* 1 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+	line-height: 1.15; /* 1 */
+	-webkit-text-size-adjust: 100%; /* 2 */
 }
 
 /* Sections
-   ========================================================================== */
+	 ========================================================================== */
 
 /**
  * Remove the margin in all browsers.
  */
 
 body {
-  margin: 0;
+	margin: 0;
 }
 /**
  * Correct the font size and margin on `h1` elements within `section` and
@@ -24,33 +24,33 @@ body {
  */
 
 h1 {
-  font-size: 2em;
-  margin: 0;
+	font-size: 2em;
+	margin: 0;
 }
 
 /* Text-level semantics
-   ========================================================================== */
+	 ========================================================================== */
 
 /**
  * Remove the gray background on active links in IE 10.
  */
 
 a {
-  background-color: transparent;
+	background-color: transparent;
 }
 /* Embedded content
-   ========================================================================== */
+	 ========================================================================== */
 
 /**
  * Remove the border on images inside links in IE 10.
  */
 
 img {
-  border-style: none;
+	border-style: none;
 }
 
 /* Forms
-   ========================================================================== */
+	 ========================================================================== */
 
 /**
  * 1. Change the font styles in all browsers.
@@ -61,85 +61,85 @@ img {
  optgroup,
  select,
  textarea {
-   font-family: inherit; /* 1 */
-   font-size: 100%; /* 1 */
-   line-height: 1.15; /* 1 */
-   margin: 0; /* 2 */
+	 font-family: inherit; /* 1 */
+	 font-size: 100%; /* 1 */
+	 line-height: 1.15; /* 1 */
+	 margin: 0; /* 2 */
  }
 
  /**
-  * Show the overflow in IE.
-  * 1. Show the overflow in Edge.
-  */
+	* Show the overflow in IE.
+	* 1. Show the overflow in Edge.
+	*/
 
  button,
  input { /* 1 */
-   overflow: visible;
+	 overflow: visible;
  }
 
  *:focus {
-    outline: none;
+		outline: none;
 }
 
  /**
-  * Remove the inheritance of text transform in Edge, Firefox, and IE.
-  * 1. Remove the inheritance of text transform in Firefox.
-  */
+	* Remove the inheritance of text transform in Edge, Firefox, and IE.
+	* 1. Remove the inheritance of text transform in Firefox.
+	*/
 
  button,
  select { /* 1 */
-   text-transform: none;
+	 text-transform: none;
  }
 
  /**
-  * Correct the inability to style clickable types in iOS and Safari.
-  */
+	* Correct the inability to style clickable types in iOS and Safari.
+	*/
 
  button,
  [type="button"],
  [type="reset"],
  [type="submit"] {
-   -webkit-appearance: button;
+	 -webkit-appearance: button;
  }
 
  /**
-  * Remove the inner border and padding in Firefox.
-  */
+	* Remove the inner border and padding in Firefox.
+	*/
 
  button::-moz-focus-inner,
  [type="button"]::-moz-focus-inner,
  [type="reset"]::-moz-focus-inner,
  [type="submit"]::-moz-focus-inner {
-   border-style: none;
-   padding: 0;
+	 border-style: none;
+	 padding: 0;
  }
 
  /**
-  * Restore the focus styles unset by the previous rule.
-  */
-  /**
-   * Add the correct vertical alignment in Chrome, Firefox, and Opera.
-   */
+	* Restore the focus styles unset by the previous rule.
+	*/
+	/**
+	 * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+	 */
 
-  progress {
-    vertical-align: baseline;
-  }
+	progress {
+		vertical-align: baseline;
+	}
 
-  /**
-   * Remove the default vertical scrollbar in IE 10+.
-   */
+	/**
+	 * Remove the default vertical scrollbar in IE 10+.
+	 */
 
-  textarea {
-    overflow: auto;
-  }
+	textarea {
+		overflow: auto;
+	}
 
-  /**
-   * 1. Add the correct box sizing in IE 10.
-   * 2. Remove the padding in IE 10.
-   */
+	/**
+	 * 1. Add the correct box sizing in IE 10.
+	 * 2. Remove the padding in IE 10.
+	 */
 
-  [type="checkbox"],
-  [type="radio"] {
-    box-sizing: border-box; /* 1 */
-    padding: 0; /* 2 */
-  }
+	[type="checkbox"],
+	[type="radio"] {
+		box-sizing: border-box; /* 1 */
+		padding: 0; /* 2 */
+	}

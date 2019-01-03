@@ -1,20 +1,20 @@
 @import '_variables', '_mixins';
 
 :local {
-  .board {
-    width: 90%;
-    height: 100%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 30px auto;
-    padding: 0 0 10px 0;
-    background: $white-transparent-light;
-    border-radius: 80px;
-    display: table;
+	.board {
+		width: 90%;
+		height: 100%;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: 30px auto;
+		padding: 0 0 10px 0;
+		background: $white-transparent-light;
+		border-radius: 80px;
+		display: table;
 
-    @include desktop {
-      width: 75%;
-    }
-  }
+		@include desktop {
+			width: 75%;
+		}
+	}
 }
