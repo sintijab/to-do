@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { createTask, removeTask } from "../../actions/taskActions"
 import { showOverlay } from "../../actions/modalActions"
+import { NEW_TASK } from "../../actions/types"
 import { isEmpty } from "../../common/utils"
 import styles from "./todoList.scss"
 import classNames from "classnames"
@@ -16,6 +17,7 @@ class TodoList extends Component {
 			tasksStored: false,
 			virtualTasks: [],
 			newTask: null,
+			storedTask: null,
 			modalDisplay: false,
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -29,6 +31,7 @@ class TodoList extends Component {
 			tasksStored,
 			virtualTasks,
 			newTask,
+			storedTask,
 		} = this.state
 		const { error, tasks } = this.props
 		const hasError = !isEmpty(error.payload)
@@ -39,11 +42,19 @@ class TodoList extends Component {
 				tasksStored: true,
 			})
 		}
+		if(tasks && tasks.type === NEW_TASK && !inputValid) {
+			this.setState({
+				inputValid: true,
+				virtualTasks: virtualTasks.concat(storedTask),
+				storedComment: null,
+			})
+		}
 		if (newTask) {
 			this.setState({
 				virtualTasks: virtualTasks.concat(newTask),
+				storedTask: newTask,
 				newTask: null,
-				errorMessage: '',
+				inputValid: true,
 			})
 		} else if (hasError && inputValid) {
 			const errorMsg = error.payload.message || ""

@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
+import { ADD_COMMENT } from "../../actions/types"
 import { closeOverlay, addComment } from "../../actions/modalActions"
 import { isEmpty } from "../../common/utils"
 import styles from "./modal.scss"
@@ -14,6 +15,7 @@ class Modal extends Component {
 			commentsStored: false,
 			virtualComments: [],
 			newComment: null,
+			storedComment: null,
 			inputFailed: false,
 		}
 
@@ -31,6 +33,7 @@ class Modal extends Component {
 			commentsStored,
 			virtualComments,
 			newComment,
+			storedComment,
 			inputFailed,
 		} = this.state
 		const { comments, error } = this.props
@@ -42,11 +45,19 @@ class Modal extends Component {
 				commentsStored: true,
 			})
 		}
+		if(comments && comments.type === ADD_COMMENT && inputFailed) {
+			this.setState({
+				inputFailed: false,
+				virtualComments: virtualComments.concat(storedComment),
+				storedComment: null,
+			})
+		}
 		if (newComment) {
 			this.setState({
 				virtualComments: virtualComments.concat(newComment),
+				storedComment: newComment,
 				newComment: null,
-				errorMessage: '',
+				inputFailed: false,
 			})
 			this.comment.value = ''
 		} else if (hasError && !inputFailed) {
